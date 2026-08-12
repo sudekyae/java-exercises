@@ -53,59 +53,61 @@ public class Main {
                         break;
 
                     case 2:
-                        int tutar;
-                        do {
-                            System.out.println("Yatırmak istediğiniz tutarı girin: ");
-                            tutar = scanner.nextInt();
-                            scanner.nextLine();
-                            if (tutar <= 0) {
-                                System.out.println("Geçersiz tutar! Lütfen 0'dan büyük bir miktar girin.");
-                            } else {
-                                bakiye += tutar;
-                                System.out.println("Mevcut bakiye: " + bakiye + " TL");
-                            }
-                        } while (tutar <= 0);
+                        System.out.println("Yatırmak istediğiniz tutarı girin: ");
+                        int tutar = scanner.nextInt();
+                        scanner.nextLine();
+                        if (tutar <= 0) {
+                            System.out.println("Geçersiz tutar! Lütfen 0'dan büyük bir miktar girin.");
+                        } else {
+                            bakiye += tutar;
+                            System.out.println("Mevcut bakiye: " + bakiye + " TL");
+                        }
                         break;
 
                     case 3:
-                        int cekilecekTutar;
-                        do {
-                            System.out.println("Çekmek istediğiniz tutarı girin: ");
-                            cekilecekTutar = scanner.nextInt();
-                            scanner.nextLine();
-                            if (cekilecekTutar <= 0) {
-                                System.out.println("Geçersiz tutar! Lütfen 0'dan büyük bir miktar girin.");
-                            } else if (cekilecekTutar > bakiye) {
-                                System.out.println("Hesabınızda yeterli miktarda bakiye bulunmamaktadır!");
-                            } else {
-                                bakiye -= cekilecekTutar;
-                                System.out.println("Kalan bakiye: " + bakiye + " TL");
-                            }
-                        } while (cekilecekTutar <= 0 || cekilecekTutar > bakiye);
+                        if (bakiye <= 0) {
+                            System.out.println("Bakiyeniz 0 TL olduğu için para çekme işlemi yapamazsınız!");
+                            break;
+                        }
+                        System.out.println("Çekmek istediğiniz tutarı girin: ");
+                        int cekilecekTutar = scanner.nextInt();
+                        scanner.nextLine();
+
+                        if (cekilecekTutar <= 0) {
+                            System.out.println("Geçersiz tutar! Lütfen 0'dan büyük bir miktar girin.");
+                        } else if (cekilecekTutar > bakiye) {
+                            System.out.println("Hesabınızda yeterli miktarda bakiye bulunmamaktadır!");
+                        } else {
+                            bakiye -= cekilecekTutar;
+                            System.out.println("Kalan bakiye: " + bakiye + " TL");
+                        }
                         break;
 
                     case 4:
                         int havaleUcreti = 5;
-                        int havaleMiktari;
+                        if (bakiye <= havaleUcreti) {
+                            System.out.println("Bakiyeniz havale ücretini (5 TL) karşılamaya yetersiz!");
+                            break;
+                        }
                         System.out.println("Hesap numarası girin: ");
                         int hesapNo = scanner.nextInt();
                         scanner.nextLine();
-                        do {
-                            System.out.println("Gönderilecek tutarı girin: ");
-                            havaleMiktari = scanner.nextInt();
-                            scanner.nextLine();
-                            if (havaleMiktari <= 0) { 
-                                System.out.println("Geçersiz tutar! Lütfen 0'dan büyük bir miktar girin.");
-                            } else if (havaleMiktari + havaleUcreti > bakiye) {
-                                System.out.println("Hesabınızda yeterli bakiye bulunmamaktadır!");
-                            } else {
-                                bakiye -= (havaleMiktari + havaleUcreti);
-                                System.out.println("｡ ₊°༺ İşleminiz başarıyla gerçekleştirilmiştir ༻°₊ ｡");
-                                System.out.println("İşlem ücreti: " + havaleUcreti + " TL");
-                                System.out.println("Alıcı hesap no: " + hesapNo);
-                                System.out.println("Kalan bakiyeniz: " + bakiye + " TL");
-                            }
-                        } while (havaleMiktari <= 0 || havaleMiktari + havaleUcreti > bakiye);
+
+                        System.out.println("Gönderilecek tutarı girin: ");
+                        int havaleMiktari = scanner.nextInt();
+                        scanner.nextLine();
+
+                        if (havaleMiktari <= 0) {
+                            System.out.println("Geçersiz tutar! Lütfen 0'dan büyük bir miktar girin.");
+                        } else if (havaleMiktari + havaleUcreti > bakiye) {
+                            System.out.println("Hesabınızda yeterli bakiye bulunmamaktadır!");
+                        } else {
+                            bakiye -= (havaleMiktari + havaleUcreti);
+                            System.out.println("｡ ₊°༺ İşleminiz başarıyla gerçekleştirilmiştir ༻°₊ ｡");
+                            System.out.println("İşlem ücreti: " + havaleUcreti + " TL");
+                            System.out.println("Alıcı hesap no: " + hesapNo);
+                            System.out.println("Kalan bakiyeniz: " + bakiye + " TL");
+                        }
                         break;
 
                     case 5:
